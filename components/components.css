@@ -1,0 +1,583 @@
+/* ===================================
+   Design Tokens (CSS Variables)
+   Figmaデザインから抽出したデザイントークン
+   =================================== */
+:root {
+    /* Colors */
+    --dc-color-primary: #0FABB5;
+    --dc-color-secondary: #F13C68;
+    --dc-color-text: #333333;
+    --dc-color-text-light: #878787;
+    --dc-color-white: #FFFFFF;
+    --dc-color-bg-light: #F5F5F5;
+    --dc-color-bg-blue: #E3FAFF;
+    --dc-color-line: #878787;
+    --dc-color-black: #000000;
+
+    /* Typography */
+    --dc-font-family: 'Noto Sans JP', sans-serif;
+    --dc-font-size-xs: 12px;
+    --dc-font-size-sm: 14px;
+    --dc-font-size-base: 16px;
+    --dc-font-size-lg: 20px;
+    --dc-font-size-xl: 24px;
+    --dc-font-size-2xl: 36px;
+    --dc-font-size-3xl: 54px;
+
+    /* Font Weights */
+    --dc-font-weight-normal: 400;
+    --dc-font-weight-medium: 500;
+    --dc-font-weight-bold: 700;
+
+    /* Line Heights */
+    --dc-line-height-tight: 1.3;
+    --dc-line-height-normal: 1.5;
+    --dc-line-height-relaxed: 1.7;
+    --dc-line-height-loose: 1.8;
+
+    /* Spacing */
+    --dc-spacing-xs: 8px;
+    --dc-spacing-sm: 12px;
+    --dc-spacing-md: 16px;
+    --dc-spacing-lg: 24px;
+    --dc-spacing-xl: 40px;
+    --dc-spacing-2xl: 48px;
+    --dc-spacing-3xl: 64px;
+
+    /* Border Radius */
+    --dc-radius-sm: 4px;
+    --dc-radius-md: 8px;
+    --dc-radius-lg: 12px;
+    --dc-radius-full: 50%;
+
+    /* Shadows */
+    --dc-shadow-sm: 0px 4px 4px rgba(156, 156, 156, 0.25);
+    --dc-shadow-md: 0px 4px 12px rgba(134, 134, 134, 0.75);
+
+    /* Header */
+    --dc-header-height: 82px;
+
+    /* Transitions */
+    --dc-transition-fast: 0.2s ease;
+    --dc-transition-normal: 0.3s ease;
+}
+
+/* ===================================
+   Reset & Base Styles
+   =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--dc-font-family);
+    font-size: var(--dc-font-size-base);
+    line-height: var(--dc-line-height-relaxed);
+    color: var(--dc-color-text);
+    background-color: var(--dc-color-bg-light);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ===================================
+   HEADER COMPONENT
+   Figma: Frame 70 (componentId: 1:79)
+   =================================== */
+.dc-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--dc-header-height);
+    background-color: var(--dc-color-white);
+    box-shadow: var(--dc-shadow-sm);
+    z-index: 1000;
+}
+
+.dc-header__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--dc-spacing-2xl);
+}
+
+.dc-header__logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.dc-header__logo img {
+    height: 36px;
+    width: auto;
+}
+
+.dc-header__nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.dc-header__nav-list {
+    display: flex;
+    gap: var(--dc-spacing-3xl);
+}
+
+.dc-header__nav-list a {
+    font-size: var(--dc-font-size-sm);
+    font-weight: var(--dc-font-weight-medium);
+    color: var(--dc-color-text);
+    transition: color var(--dc-transition-normal);
+    position: relative;
+}
+
+.dc-header__nav-list a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--dc-color-primary);
+    transition: width var(--dc-transition-normal);
+}
+
+.dc-header__nav-list a:hover {
+    color: var(--dc-color-primary);
+}
+
+.dc-header__nav-list a:hover::after {
+    width: 100%;
+}
+
+/* Mobile Menu Button */
+.dc-header__menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.dc-header__menu-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dc-color-text);
+    transition: all var(--dc-transition-normal);
+}
+
+.dc-header__menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.dc-header__menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.dc-header__menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ===================================
+   BUTTON COMPONENT
+   Figma: Button (componentId: 12:1363)
+   =================================== */
+.dc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--dc-spacing-xs);
+    font-family: var(--dc-font-family);
+    font-weight: var(--dc-font-weight-bold);
+    font-size: var(--dc-font-size-base);
+    line-height: 1;
+    border: none;
+    border-radius: var(--dc-radius-sm);
+    cursor: pointer;
+    transition: all var(--dc-transition-normal);
+    white-space: nowrap;
+}
+
+.dc-btn__icon {
+    width: 20px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* Primary Button */
+.dc-btn--primary {
+    background-color: var(--dc-color-secondary);
+    color: var(--dc-color-white);
+}
+
+.dc-btn--primary:hover {
+    background-color: #d93359;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(241, 60, 104, 0.3);
+}
+
+/* Outline Button */
+.dc-btn--outline {
+    background-color: transparent;
+    color: var(--dc-color-primary);
+    border: 1px solid var(--dc-color-primary);
+    padding: var(--dc-spacing-md) var(--dc-spacing-lg);
+}
+
+.dc-btn--outline:hover {
+    background-color: var(--dc-color-primary);
+    color: var(--dc-color-white);
+}
+
+/* Button Sizes */
+.dc-btn--sm {
+    padding: var(--dc-spacing-md) 20px;
+    font-size: var(--dc-font-size-base);
+}
+
+.dc-btn--lg {
+    padding: var(--dc-spacing-md) 20px;
+    font-size: var(--dc-font-size-base);
+}
+
+/* ===================================
+   CARD COMPONENT
+   Figma: Frame 45/47 (componentId: 1:59)
+   講座カードコンポーネント
+   =================================== */
+.dc-card {
+    display: flex;
+    gap: var(--dc-spacing-2xl);
+    padding: var(--dc-spacing-xl);
+    background-color: var(--dc-color-white);
+    border: 2px solid var(--dc-color-primary);
+    transition: all var(--dc-transition-normal);
+}
+
+.dc-card:hover {
+    box-shadow: var(--dc-shadow-md);
+    transform: translateY(-4px);
+}
+
+.dc-card__image {
+    width: 408px;
+    height: 301px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: var(--dc-radius-md);
+}
+
+.dc-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dc-transition-normal);
+}
+
+.dc-card:hover .dc-card__image img {
+    transform: scale(1.05);
+}
+
+.dc-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.dc-card__title {
+    font-size: var(--dc-font-size-xl);
+    font-weight: var(--dc-font-weight-bold);
+    line-height: 1.6;
+    color: var(--dc-color-text);
+}
+
+.dc-card__description {
+    font-size: var(--dc-font-size-base);
+    line-height: var(--dc-line-height-loose);
+    color: var(--dc-color-text);
+    max-width: 442px;
+}
+
+.dc-card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.dc-card__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dc-card__meta-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dc-color-primary);
+    color: var(--dc-color-white);
+    font-size: var(--dc-font-size-base);
+    font-weight: var(--dc-font-weight-medium);
+    padding: 0 var(--dc-spacing-xs);
+    min-width: 48px;
+    height: 26px;
+}
+
+.dc-card__meta-value {
+    font-size: var(--dc-font-size-base);
+    color: var(--dc-color-text);
+}
+
+/* Card Compact Variant (Feature Cards) */
+.dc-card--compact {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    border: none;
+    border-radius: var(--dc-radius-md);
+    overflow: hidden;
+}
+
+.dc-card--compact .dc-card__image {
+    width: 100%;
+    height: 180px;
+    border-radius: 0;
+}
+
+.dc-card--compact .dc-card__content {
+    padding: var(--dc-spacing-md);
+    gap: var(--dc-spacing-md);
+}
+
+.dc-card--compact .dc-card__title {
+    font-size: var(--dc-font-size-base);
+    font-weight: var(--dc-font-weight-bold);
+    line-height: var(--dc-line-height-tight);
+}
+
+.dc-card--compact .dc-card__description {
+    font-size: var(--dc-font-size-sm);
+    line-height: var(--dc-line-height-relaxed);
+    max-width: none;
+}
+
+/* Cards Grid Layout */
+.dc-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--dc-spacing-lg);
+}
+
+/* ===================================
+   FOOTER COMPONENT
+   Figma: Frame 47 (componentId: 1:88)
+   =================================== */
+.dc-footer {
+    background-color: var(--dc-color-primary);
+    padding: 36px 0;
+    text-align: center;
+}
+
+.dc-footer__copyright {
+    font-size: var(--dc-font-size-xs);
+    font-weight: var(--dc-font-weight-normal);
+    color: var(--dc-color-white);
+    line-height: 1.448;
+}
+
+/* ===================================
+   DEMO PAGE STYLES
+   (デモページ用のスタイル)
+   =================================== */
+.demo-content {
+    padding-top: calc(var(--dc-header-height) + var(--dc-spacing-xl));
+    padding-bottom: var(--dc-spacing-xl);
+    min-height: calc(100vh - var(--dc-header-height) - 88px);
+}
+
+.demo-section {
+    max-width: 1100px;
+    margin: 0 auto var(--dc-spacing-2xl);
+    padding: var(--dc-spacing-xl);
+    background-color: var(--dc-color-white);
+    border-radius: var(--dc-radius-md);
+}
+
+.demo-title {
+    font-size: var(--dc-font-size-2xl);
+    font-weight: var(--dc-font-weight-bold);
+    color: var(--dc-color-primary);
+    text-align: center;
+    margin-bottom: var(--dc-spacing-sm);
+}
+
+.demo-subtitle {
+    font-size: var(--dc-font-size-base);
+    color: var(--dc-color-text-light);
+    text-align: center;
+    margin-bottom: var(--dc-spacing-xl);
+}
+
+.demo-section-title {
+    font-size: var(--dc-font-size-xl);
+    font-weight: var(--dc-font-weight-bold);
+    color: var(--dc-color-text);
+    margin-bottom: var(--dc-spacing-lg);
+    padding-bottom: var(--dc-spacing-sm);
+    border-bottom: 3px solid var(--dc-color-primary);
+    display: inline-block;
+}
+
+.demo-variant-title {
+    font-size: var(--dc-font-size-lg);
+    font-weight: var(--dc-font-weight-medium);
+    color: var(--dc-color-text);
+    margin: var(--dc-spacing-xl) 0 var(--dc-spacing-lg);
+}
+
+.demo-section .dc-card {
+    margin-bottom: var(--dc-spacing-lg);
+}
+
+.demo-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--dc-spacing-md);
+    align-items: center;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media (max-width: 1024px) {
+    .dc-card {
+        flex-direction: column;
+    }
+
+    .dc-card__image {
+        width: 100%;
+        height: 250px;
+    }
+
+    .dc-card__description {
+        max-width: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .dc-header__inner {
+        padding: 0 var(--dc-spacing-lg);
+    }
+
+    .dc-header__nav {
+        position: fixed;
+        top: var(--dc-header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--dc-color-white);
+        padding: var(--dc-spacing-lg);
+        box-shadow: var(--dc-shadow-sm);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--dc-transition-normal);
+    }
+
+    .dc-header__nav.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .dc-header__nav-list {
+        flex-direction: column;
+        gap: var(--dc-spacing-md);
+        align-items: center;
+    }
+
+    .dc-header__menu-btn {
+        display: flex;
+    }
+
+    .dc-header .dc-btn {
+        display: none;
+    }
+
+    .demo-content {
+        padding: calc(var(--dc-header-height) + var(--dc-spacing-md)) var(--dc-spacing-md) var(--dc-spacing-md);
+    }
+
+    .demo-section {
+        padding: var(--dc-spacing-lg);
+        margin-bottom: var(--dc-spacing-lg);
+    }
+
+    .demo-title {
+        font-size: var(--dc-font-size-xl);
+    }
+
+    .dc-card {
+        padding: var(--dc-spacing-lg);
+        gap: var(--dc-spacing-lg);
+    }
+
+    .dc-card__title {
+        font-size: var(--dc-font-size-lg);
+    }
+
+    .dc-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .dc-card__image {
+        height: 200px;
+    }
+
+    .dc-card__meta-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .demo-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .demo-buttons .dc-btn {
+        width: 100%;
+    }
+}
+
